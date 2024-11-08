@@ -7,7 +7,8 @@ import ArticleCard from '../../../components/explore/article-card';
 import SearchBar from '../../../components/explore/search-bar';
 
 export default function Explore() {
-  const { articles, loading, handleQueryChange, query, onSubmitQuery, onClearQuery } = useExplore();
+  const { articles, loading, query, queryUsed, handleQueryChange, onSubmitQuery, onClearQuery } = useExplore();
+  const errorMessage = `No articles found for "${ query }"`;
 
   return (
     <Layout>
@@ -20,6 +21,14 @@ export default function Explore() {
         value={ query }
       />
 
+      {
+        ( queryUsed && query ) && (
+          <p>
+            Showing results for: <strong>{ query }</strong>
+          </p>
+        )
+      }
+
       <section className={ styles[`explore__articles`] }>
         { articles.map((article) => (
           <ArticleCard 
@@ -28,7 +37,7 @@ export default function Explore() {
           />
         )) }
         { loading && <p>Loading...</p> }
-        { !loading && !articles.length && <p>No articles found</p> }
+        { ( !loading && !articles.length ) && <p>{ errorMessage }</p> }
       </section>
       
     </Layout>

@@ -1,6 +1,8 @@
 import { Fragment } from "react/jsx-runtime"
+import { Link } from "react-router-dom";
 
 import Up from "../../../components/up"
+import MainHeader from "../../../components/main-header";
 
 interface IAdminLayoutProps {
   children: React.ReactNode,
@@ -8,11 +10,15 @@ interface IAdminLayoutProps {
 }
 
 export default function AdminLayout({ children, ...props } : IAdminLayoutProps) {
+  const LOCAL_ADMIN = `/admin`;
+
   return (
     <Fragment { ...props }>
-      <header>
-        <h1>Admin</h1>
-      </header>
+      <MainHeader>
+        <Link to={ LOCAL_ADMIN }>
+          <strong>Dashboard</strong>
+        </Link>
+      </MainHeader>
       <main>
         { children }
       </main>

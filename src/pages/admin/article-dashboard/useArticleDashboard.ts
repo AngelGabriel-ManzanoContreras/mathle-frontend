@@ -7,7 +7,7 @@ export default function useArticleDashboard() {
 
   const fetchArticles = async () => {
     const data = await fetchData('admin/articles');
-    if (data?.status === 200 && data.data.articles) setArticles( data.data.articles );
+    if (data?.status === 200 && data.data ) setArticles( data.data );
   }
 
   useEffect( () => {

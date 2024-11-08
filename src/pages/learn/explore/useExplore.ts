@@ -7,6 +7,7 @@ export default function useExplore() {
   const [ articles, setArticles ] = useState( [] );
   const [ articlesJoined, setArticlesJoined ] = useState<Array<TArticle & { relativePath?: string }>>([]);
   const [ query, setQuery ] = useState( '' );
+  const [ queryUsed, setQueryUsed ] = useState( false );
   const [ loading, setLoading ] = useState( true );
 
   const getRelativePath = ( article : TArticleJoined ) => {
@@ -23,6 +24,7 @@ export default function useExplore() {
 
   const fetchArticles = async () => {
     const response = await fetchData( 'explore', 'GET' );
+    setQueryUsed( false );
     if ( response ) setArticles( response.data );
     else setLoading( false );
   }
@@ -39,9 +41,13 @@ export default function useExplore() {
         relativePath: getRelativePath( article )
       }));
 
+      setQueryUsed( true );
       setArticles( formattedArticles );
     }
-    else setLoading( false );
+    else {
+      setLoading( false );
+      setArticles( [] );
+    }
   }
 
   const handleQueryChange = ( event : React.ChangeEvent<HTMLInputElement> ) => {
@@ -56,6 +62,7 @@ export default function useExplore() {
 
   const onClearQuery = ( event : React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    fetchArticles();
     setQuery( '' );
   }
 
@@ -76,6 +83,7 @@ export default function useExplore() {
     articles : articlesJoined,
     loading,
     query,
+    queryUsed,
     handleQueryChange,
     onSubmitQuery,
     onClearQuery

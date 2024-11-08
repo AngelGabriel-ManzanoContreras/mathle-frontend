@@ -5,8 +5,13 @@ import mathle_icon from '../../assets/icons/mathle-icon-1.webp'
 
 import styles from './main-header.module.css'
 import MainButton from '../main-button';
+import { Children } from 'react';
 
-export default function MainHeader() {
+interface IMainHeaderProps {
+  children?: React.ReactNode;
+}
+
+export default function MainHeader({ children }: IMainHeaderProps) {
   const navigate = useNavigate();
   const ALT_TEXT = 'Mathle Icon';
   const EXPLORE = `/explore`;
@@ -29,6 +34,7 @@ export default function MainHeader() {
       </figure>
 
       <section className={ styles[`main-header__section`] }>
+        { children }
         <nav className={ styles[`main-header__nav`] }>
           <ul>
             <li>
