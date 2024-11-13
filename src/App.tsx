@@ -6,6 +6,10 @@ import Subject from './pages/learn/subject';
 import Topic from './pages/learn/topic';
 import Article from './pages/learn/article';
 
+import SignIn from './pages/user/sign-in';
+import SignUp from './pages/user/sign-up';
+import Profile from './pages/user/profile';
+
 import ArticleDashboard from './pages/admin/article-dashboard';
 import AdminDashboard from './pages/admin/dashboard';
 import Editor from './pages/admin/editor';
@@ -19,6 +23,10 @@ const App = () => {
         <Route path='learn/:subject' element={<Subject />} />
         <Route path='learn/:subject/:topic' element={<Topic />} />
         <Route path='learn/:subject/:topic/:subtopic' element={<Article />} />
+
+        <Route path='sign-in' element={<SignIn />} />
+        <Route path='sign-up' element={<SignUp />} />
+        <Route path='user/profile' element={<Profile />} />
 
         <Route path='admin' element={<AdminDashboard />} />
         <Route path='admin/articles' element={<ArticleDashboard />} />

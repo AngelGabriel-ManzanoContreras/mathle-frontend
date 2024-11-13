@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { WEBSITE_ADDRESS } from '../../env';
+import { Link, useNavigate } from 'react-router-dom';
+import useMainHeader from './useMainHeader';
 
 import mathle_icon from '../../assets/icons/mathle-icon-1.webp'
 
@@ -12,6 +12,7 @@ interface IMainHeaderProps {
 }
 
 export default function MainHeader({ children }: IMainHeaderProps) {
+  const { userLogged } = useMainHeader();
   const navigate = useNavigate();
   const ALT_TEXT = 'Mathle Icon';
   const EXPLORE = `/explore`;
@@ -43,7 +44,9 @@ export default function MainHeader({ children }: IMainHeaderProps) {
           </ul>
         </nav>
 
-        <MainButton onClick={ handleNavigation }>Sign up</MainButton>
+        {
+          !userLogged && ( <MainButton onClick={ handleNavigation }>Sign up</MainButton> )
+        }
       </section>
     </header>
   )

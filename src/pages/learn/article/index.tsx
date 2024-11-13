@@ -9,6 +9,7 @@ export default function Article() {
     <LearningLayout>
       <article>
         <h2>{ title }</h2>
+        <hr />
 
         <div className={ styles[`article__content`] } dangerouslySetInnerHTML={{ __html: content }}></div>
       </article>

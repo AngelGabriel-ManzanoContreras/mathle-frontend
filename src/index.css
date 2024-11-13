@@ -12,8 +12,10 @@
   
   --custom-white: #F1FFF1;
   --custom-black: #121112;
+  --custom-beige: #F4EEE3;
+  --soft-shadow: 0 0 1rem rgba(0, 0, 0, 0.212);
 
-  --primary-color: #F1FFF1;
+  --primary-color: #F1FFF1AA;
   --secondary-color: #002F6C;
   --tertiary-color: #E51B1B;
 
