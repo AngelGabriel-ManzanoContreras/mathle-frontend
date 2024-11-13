@@ -10,8 +10,7 @@ interface ArticleProps {
 }
 
 export default function Article({ contentFromOuter, titleFromOuter } : ArticleProps) {
-  const { title, content, markAsRead, read, unmarkAsRead, theresUserID } = useArticle();
-  console.log( contentFromOuter );
+  const { title, content, markAsRead, read, unmarkAsRead, theresUserID, addToList } = useArticle();
 
   return (
     <LearningLayout>
@@ -19,7 +18,7 @@ export default function Article({ contentFromOuter, titleFromOuter } : ArticlePr
         <section className={ styles[`article__header`]}>
           <h2>{ title || titleFromOuter }</h2>
           <section>
-            { theresUserID > 0 && <MainButton>Save to List</MainButton> }
+            { theresUserID > 0 && <MainButton onClick={ addToList }>Save to List</MainButton> }
             { !read && ( <MainButton onClick={ markAsRead }>Done</MainButton> ) }
             { read && ( <MainButton onClick={ unmarkAsRead }>Unmark</MainButton> ) }
           </section>

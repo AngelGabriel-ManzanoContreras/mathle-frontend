@@ -1,9 +1,11 @@
 import useUserProfile from "./useUserProfile";
 
+import { Link } from "react-router-dom";
+
 import Layout from "../../layout";
 
 export default function UserProfile() {
-  const { userName, email, name } = useUserProfile();
+  const { userName, email, name, lists } = useUserProfile();
 
   return (
     <Layout>
@@ -18,6 +20,13 @@ export default function UserProfile() {
 
       <br />
       <p><strong>Your Lists</strong></p>
+      <ul>
+        {lists.map((list, index) => (
+          <li key={index}>
+            <Link to={`/list/${list.ID_List}`}>{list.list_name}</Link>
+          </li>
+        ))}
+      </ul>
     </Layout>
   )
 }

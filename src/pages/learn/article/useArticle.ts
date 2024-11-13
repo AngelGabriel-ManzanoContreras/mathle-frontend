@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 
 import fetchData from "../../../logic/utils/fetch";
@@ -7,8 +7,9 @@ export default function useArticle() {
   const [ ID, setID ] = useState(null);
   const [ theresUserID, setTheresUserID ] = useState<number>(0);
   const [ article, setArticle ] = useState(null);
-  const { subtopic, topic } = useParams();
   const [ read, setRead ] = useState(false);
+  const { subtopic, topic } = useParams();
+  const navigate = useNavigate();
 
   const fetchArticle = async () => {
     const query = subtopic || topic;
@@ -52,6 +53,10 @@ export default function useArticle() {
     if ( read ) setRead(true);
   }
 
+  const addToList = () => {
+    navigate(`/user/list/add?aid=${ ID }&uid=${ theresUserID }`);
+  }
+
   useEffect(() => {
     if (!subtopic || !topic) return;
     fetchArticle();
@@ -65,11 +70,17 @@ export default function useArticle() {
     isRead();
   }, [ ID ]);
 
+  useEffect(() => {
+    const id_user = localStorage.getItem('id_user');
+    if ( id_user ) setTheresUserID( parseInt(id_user) );
+  }, []);
+
   return {
     ...article,
     read,
     theresUserID,
     markAsRead,
-    unmarkAsRead
+    unmarkAsRead,
+    addToList
   }
 }

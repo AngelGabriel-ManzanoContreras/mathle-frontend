@@ -8,6 +8,7 @@ export default function useUserProfile() {
   const [ userName, setUserName ] = useState<string | null>(null);
   const [ email, setEmail ] = useState<string | null>(null);
   const [ name, setName ] = useState<string | null>(null);
+  const [ lists, setLists ] = useState([]);
   const navigate = useNavigate();
 
   const getIDfromLocalStorage = async() => {
@@ -36,6 +37,13 @@ export default function useUserProfile() {
     }
   }
 
+  const getLists = async () => {
+    const response = await fetchData(`list/${userID}`);
+    if ( response ) {
+      const data = await response.data;
+      setLists(data);
+    }
+  }
 
   useEffect(() => {
     getIDfromLocalStorage();
@@ -44,12 +52,14 @@ export default function useUserProfile() {
   useEffect(() => {
     if (userID) {
       getUserProfile();
+      getLists();
     }
   }, [userID]);
 
   return {
     userName,
     email,
-    name
+    name,
+    lists,
   }
 }
