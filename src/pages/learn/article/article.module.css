@@ -2,6 +2,18 @@
   padding: var(--page-padding);
 }
 
+.article__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article__header > section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .article__content h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;

@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1>trakalosa del monterreal</h1>
+      <h1>Mathle</h1>
     </div>
   )
 }

@@ -8,9 +8,9 @@ import LearningLayout from '../LearningLayout';
 import Article from '../article';
 
 export default function Topic() {
-  const { topic, subtopics } = useTopic();
+  const { topic, content, subtopics } = useTopic();
 
-  if ( topic?.has_content ) return <Article />;
+  if ( topic?.has_content ) return <Article contentFromOuter={ content } titleFromOuter={ topic.title } />;
 
   return (
     <LearningLayout>
